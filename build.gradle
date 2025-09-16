@@ -3,14 +3,24 @@ buildscript {
         jcenter()
         maven {
             name = "ForgeMaven"
+            url = "https://repo.spongepowered.org/repository/maven-public/"
+        }
+        maven {
+            name = "ForgeMaven"
             url = "https://files.minecraftforge.net/maven"
         }
+
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 repositories {
+    mavenCentral()
+    maven {
+        name = "ForgeMaven"
+        url = "https://files.minecraftforge.net/maven"
+    }
     maven {
         name = "Progwml6 maven"
         url = "https://dvs1.progwml6.com/files/maven/"
@@ -22,7 +32,6 @@ repositories {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-
 
 version = "1.2.16f"
 group = "com.anotherstar" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -49,6 +58,20 @@ minecraft {
     replace "@VERSION@", project.version
 }
 
+repositories {
+    maven {
+        name = "ForgeMaven"
+        url = "https://repo.spongepowered.org/repository/maven-public/"
+    }
+    maven {
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.k-4u.nl"
+    }
+}
 dependencies {
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
@@ -71,9 +94,9 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     // compile against the JEI API but do not include it at runtime
-    deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    compile "mezz.jei:jei_1.12.2:4.16.1.302:api"
     // at runtime, use the full JEI jar
-    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    runtime "mezz.jei:jei_1.12.2:4.16.1.302"
 }
 
 processResources {
