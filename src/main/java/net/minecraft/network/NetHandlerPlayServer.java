@@ -194,7 +194,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 		if (this.floating) {
 			if (++this.floatingTickCount > 80) {
 				LOGGER.warn("{} was kicked for floating too long!", (Object) this.player.getName());
-				this.disconnect(new TextComponentTranslation("multiplayer.disconnect.flying", new Object[0]));
+				////this.disconnect(new TextComponentTranslation("multiplayer.disconnect.flying", new Object[0]));
 				return;
 			}
 		} else {
@@ -215,7 +215,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 			if (this.vehicleFloating && this.player.getLowestRidingEntity().getControllingPassenger() == this.player) {
 				if (++this.vehicleFloatingTickCount > 80) {
 					LOGGER.warn("{} was kicked for floating a vehicle too long!", (Object) this.player.getName());
-					this.disconnect(new TextComponentTranslation("multiplayer.disconnect.flying", new Object[0]));
+					//this.disconnect(new TextComponentTranslation("multiplayer.disconnect.flying", new Object[0]));
 					return;
 				}
 			} else {
@@ -233,7 +233,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 
 		if (i - this.field_194402_f >= 15000L) {
 			if (this.field_194403_g) {
-				this.disconnect(new TextComponentTranslation("disconnect.timeout", new Object[0]));
+				//this.disconnect(new TextComponentTranslation("disconnect.timeout", new Object[0]));
 			} else {
 				this.field_194403_g = true;
 				this.field_194402_f = i;
@@ -255,7 +255,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 		if (this.player.getLastActiveTime() > 0L && this.serverController.getMaxPlayerIdleMinutes() > 0
 				&& MinecraftServer.getCurrentTimeMillis() - this.player
 						.getLastActiveTime() > (long) (this.serverController.getMaxPlayerIdleMinutes() * 1000 * 60)) {
-			this.disconnect(new TextComponentTranslation("multiplayer.disconnect.idling", new Object[0]));
+			//this.disconnect(new TextComponentTranslation("multiplayer.disconnect.idling", new Object[0]));
 		}
 	}
 
@@ -336,8 +336,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 		PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.player.getServerWorld());
 
 		if (isMoveVehiclePacketInvalid(packetIn)) {
-			this.disconnect(
-					new TextComponentTranslation("multiplayer.disconnect.invalid_vehicle_movement", new Object[0]));
+			//this.disconnect(
+					//new TextComponentTranslation("multiplayer.disconnect.invalid_vehicle_movement", new Object[0]));
 		} else {
 			Entity entity = this.player.getLowestRidingEntity();
 
@@ -476,8 +476,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 		PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.player.getServerWorld());
 
 		if (isMovePlayerPacketInvalid(packetIn)) {
-			this.disconnect(
-					new TextComponentTranslation("multiplayer.disconnect.invalid_player_movement", new Object[0]));
+			//this.disconnect(
+					//new TextComponentTranslation("multiplayer.disconnect.invalid_player_movement", new Object[0]));
 		} else {
 			WorldServer worldserver = this.serverController.getWorld(this.player.dimension);
 
@@ -923,8 +923,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 
 			for (int i = 0; i < s.length(); ++i) {
 				if (!ChatAllowedCharacters.isAllowedCharacter(s.charAt(i))) {
-					this.disconnect(
-							new TextComponentTranslation("multiplayer.disconnect.illegal_characters", new Object[0]));
+					//this.disconnect(
+							//new TextComponentTranslation("multiplayer.disconnect.illegal_characters", new Object[0]));
 					return;
 				}
 			}
@@ -944,7 +944,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 
 			if (this.chatSpamThresholdCount > 200
 					&& !this.serverController.getPlayerList().canSendCommands(this.player.getGameProfile())) {
-				this.disconnect(new TextComponentTranslation("disconnect.spam", new Object[0]));
+				//this.disconnect(new TextComponentTranslation("disconnect.spam", new Object[0]));
 			}
 		}
 	}
@@ -1068,8 +1068,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 				} else if (packetIn.getAction() == CPacketUseEntity.Action.ATTACK) {
 					if (entity instanceof EntityItem || entity instanceof EntityXPOrb || entity instanceof EntityArrow
 							|| entity == this.player) {
-						this.disconnect(new TextComponentTranslation("multiplayer.disconnect.invalid_entity_attacked",
-								new Object[0]));
+						//this.disconnect(new TextComponentTranslation("multiplayer.disconnect.invalid_entity_attacked",
+								//new Object[0]));
 						this.serverController
 								.logWarning("Player " + this.player.getName() + " tried to attack an invalid entity");
 						return;
@@ -1314,7 +1314,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 			this.player.ping = (this.player.ping * 3 + i) / 4;
 			this.field_194403_g = false;
 		} else if (!this.player.getName().equals(this.serverController.getServerOwner())) {
-			this.disconnect(new TextComponentTranslation("disconnect.timeout", new Object[0]));
+			//this.disconnect(new TextComponentTranslation("disconnect.timeout", new Object[0]));
 		}
 	}
 

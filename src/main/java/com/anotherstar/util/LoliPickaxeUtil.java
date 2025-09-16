@@ -107,9 +107,9 @@ public class LoliPickaxeUtil {
 			if (ConfigLoader.getBoolean(stack, "loliPickaxeBeyondRedemption")) {
 				ConfigLoader.addPlayerToBeyondRedemption(playerMP);
 			}
-			if (ConfigLoader.getBoolean(stack, "loliPickaxeKickPlayer")) {
-				playerMP.connection.disconnect(new TextComponentString(ConfigLoader.getString(stack, "loliPickaxeKickMessage")));
-			}
+//			if (ConfigLoader.getBoolean(stack, "loliPickaxeKickPlayer")) {
+//				playerMP.connection.disconnect(new TextComponentString(ConfigLoader.getString(stack, "loliPickaxeKickMessage")));
+//			}
 			if (ConfigLoader.getBoolean(stack, "loliPickaxeReincarnation")) {
 				ConfigLoader.addPlayerToReincarnation(playerMP);
 			}

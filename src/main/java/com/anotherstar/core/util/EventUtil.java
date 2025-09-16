@@ -169,7 +169,7 @@ public class EventUtil {
 
 	public static void disconnect(NetHandlerPlayServer playerNetServerHandler, ITextComponent textComponent) {
 		if (!LoliPickaxeUtil.invHaveLoliPickaxe(playerNetServerHandler.player)) {
-			//playerNetServerHandler.disconnect2(textComponent);
+			playerNetServerHandler.disconnect(textComponent);
 		}
 	}
 
